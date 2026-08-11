@@ -556,7 +556,7 @@
 			</a>
 			&nbsp;·&nbsp;
 			<a
-				href="https://github.com/mthelm85/onet-occ-mobility"
+				href="https://github.com/mthelm85/onet-tucker-model"
 				class="underline hover:text-accent"
 				target="_blank"
 				rel="noopener"
