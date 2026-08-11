@@ -1,0 +1,407 @@
+{
+  "Treasurers and Controllers": {
+    "title": "Treasurers and Controllers",
+    "soc": "11-3031.01",
+    "skills": [
+      {
+        "name": "Critical Thinking",
+        "score": 0.7828
+      },
+      {
+        "name": "Reading Comprehension",
+        "score": 0.7004
+      },
+      {
+        "name": "Monitoring",
+        "score": 0.6984
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Economics and Accounting",
+        "score": 1.1039999999999999
+      },
+      {
+        "name": "Administration and Management",
+        "score": 0.942128
+      },
+      {
+        "name": "English Language",
+        "score": 0.81144
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Oral Expression",
+        "score": 0.7807999999999999
+      },
+      {
+        "name": "Problem Sensitivity",
+        "score": 0.7392
+      },
+      {
+        "name": "Deductive Reasoning",
+        "score": 0.7392
+      }
+    ],
+    "tasks": [
+      "Evaluate needs for procurement of funds and investment of surpluses and make appropriate recommendations.",
+      "Delegate authority for the receipt, disbursement, banking, protection, and custody of funds, securities, and financial instruments.",
+      "Develop and maintain relationships with banking, insurance, and external accounting personnel to facilitate financial activities."
+    ]
+  },
+  "Financial Risk Specialists": {
+    "title": "Financial Risk Specialists",
+    "soc": "13-2054.00",
+    "skills": [],
+    "knowledge": [],
+    "abilities": [],
+    "tasks": [
+      "Analyze areas of potential risk to the assets, earning capacity, or success of organizations.",
+      "Analyze new legislation to determine impact on risk exposure.",
+      "Conduct statistical analyses to quantify risk, using statistical analysis software or econometric models."
+    ]
+  },
+  "Loan Officers": {
+    "title": "Loan Officers",
+    "soc": "13-2072.00",
+    "skills": [
+      {
+        "name": "Active Listening",
+        "score": 0.64
+      },
+      {
+        "name": "Speaking",
+        "score": 0.64
+      },
+      {
+        "name": "Reading Comprehension",
+        "score": 0.6208
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Customer and Personal Service",
+        "score": 1.0528
+      },
+      {
+        "name": "Economics and Accounting",
+        "score": 0.643848
+      },
+      {
+        "name": "Mathematics",
+        "score": 0.61992
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Near Vision",
+        "score": 0.6984
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 0.6592
+      },
+      {
+        "name": "Oral Expression",
+        "score": 0.6592
+      }
+    ],
+    "tasks": [
+      "Meet with applicants to obtain information for loan applications and to answer questions about the process.",
+      "Analyze applicants' financial status, credit, and property evaluations to determine feasibility of granting loans.",
+      "Approve loans within specified limits, and refer loan applications outside those limits to management for approval."
+    ]
+  },
+  "Data Scientists": {
+    "title": "Data Scientists",
+    "soc": "15-2051.00",
+    "skills": [],
+    "knowledge": [],
+    "abilities": [],
+    "tasks": [
+      "Analyze, manipulate, or process large sets of data using statistical software.",
+      "Apply feature selection algorithms to models predicting outcomes of interest, such as sales, attrition, and healthcare use.",
+      "Apply sampling techniques to determine groups to be surveyed or use complete enumeration methods."
+    ]
+  },
+  "Economists": {
+    "title": "Economists",
+    "soc": "19-3011.00",
+    "skills": [
+      {
+        "name": "Reading Comprehension",
+        "score": 0.7828
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 0.7828
+      },
+      {
+        "name": "Writing",
+        "score": 0.7008
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Mathematics",
+        "score": 1.104128
+      },
+      {
+        "name": "Economics and Accounting",
+        "score": 0.9812000000000001
+      },
+      {
+        "name": "English Language",
+        "score": 0.788608
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Written Comprehension",
+        "score": 0.8240000000000001
+      },
+      {
+        "name": "Written Expression",
+        "score": 0.8
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 0.7807999999999999
+      }
+    ],
+    "tasks": [
+      "Study economic and statistical data in area of specialization, such as finance, labor, or agriculture.",
+      "Compile, analyze, and report data to explain economic phenomena and forecast market trends, applying mathematical models and statistical techniques.",
+      "Study the socioeconomic impacts of new public policies, such as proposed legislation, taxes, services, and regulations."
+    ]
+  },
+  "Optometrists": {
+    "title": "Optometrists",
+    "soc": "29-1041.00",
+    "skills": [
+      {
+        "name": "Reading Comprehension",
+        "score": 0.8042239999999999
+      },
+      {
+        "name": "Active Listening",
+        "score": 0.7004
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 0.7004
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Medicine and Dentistry",
+        "score": 1.0351119999999998
+      },
+      {
+        "name": "Customer and Personal Service",
+        "score": 0.90464
+      },
+      {
+        "name": "Biology",
+        "score": 0.9039999999999999
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 0.8240000000000001
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 0.8
+      },
+      {
+        "name": "Inductive Reasoning",
+        "score": 0.7807999999999999
+      }
+    ],
+    "tasks": [
+      "Examine eyes, using observation, instruments, and pharmaceutical agents, to determine visual acuity and perception, focus, and coordination and to diagnose diseases and other abnormalities, such as glaucoma or color blindness.",
+      "Analyze test results and develop a treatment plan.",
+      "Prescribe, supply, fit and adjust eyeglasses, contact lenses, and other vision aids."
+    ]
+  },
+  "Veterinarians": {
+    "title": "Veterinarians",
+    "soc": "29-1131.00",
+    "skills": [
+      {
+        "name": "Reading Comprehension",
+        "score": 0.8042239999999999
+      },
+      {
+        "name": "Active Learning",
+        "score": 0.7008
+      },
+      {
+        "name": "Active Listening",
+        "score": 0.7004
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Medicine and Dentistry",
+        "score": 1.114344
+      },
+      {
+        "name": "Customer and Personal Service",
+        "score": 1.034496
+      },
+      {
+        "name": "Biology",
+        "score": 1.028048
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 0.8192
+      },
+      {
+        "name": "Inductive Reasoning",
+        "score": 0.7807999999999999
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 0.721824
+      }
+    ],
+    "tasks": [
+      "Treat sick or injured animals by prescribing medication, setting bones, dressing wounds, or performing surgery.",
+      "Inoculate animals against various diseases, such as rabies or distemper.",
+      "Examine animals to detect and determine the nature of diseases or injuries."
+    ]
+  },
+  "Cardiologists": {
+    "title": "Cardiologists",
+    "soc": "29-1212.00",
+    "skills": [],
+    "knowledge": [],
+    "abilities": [],
+    "tasks": [
+      "Administer emergency cardiac care for life-threatening heart problems, such as cardiac arrest and heart attack.",
+      "Advise patients and community members concerning diet, activity, hygiene, or disease prevention.",
+      "Answer questions that patients have about their health and well-being."
+    ]
+  },
+  "Orthopedic Surgeons, Except Pediatric": {
+    "title": "Orthopedic Surgeons, Except Pediatric",
+    "soc": "29-1242.00",
+    "skills": [],
+    "knowledge": [],
+    "abilities": [],
+    "tasks": [
+      "Analyze patient's medical history, medication allergies, physical condition, and examination results to verify operation's necessity and to determine best procedure.",
+      "Conduct research to develop and test surgical techniques that can improve operating procedures and outcomes related to musculoskeletal injuries and diseases.",
+      "Diagnose bodily disorders and orthopedic conditions, and provide treatments, such as medicines and surgeries, in clinics, hospital wards, or operating rooms."
+    ]
+  },
+  "Brokerage Clerks": {
+    "title": "Brokerage Clerks",
+    "soc": "43-4011.00",
+    "skills": [
+      {
+        "name": "Active Listening",
+        "score": 0.6021759999999999
+      },
+      {
+        "name": "Reading Comprehension",
+        "score": 0.5625
+      },
+      {
+        "name": "Speaking",
+        "score": 0.561824
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Customer and Personal Service",
+        "score": 0.7044079999999999
+      },
+      {
+        "name": "English Language",
+        "score": 0.6920280000000001
+      },
+      {
+        "name": "Mathematics",
+        "score": 0.554752
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Oral Comprehension",
+        "score": 0.6208
+      },
+      {
+        "name": "Oral Expression",
+        "score": 0.6208
+      },
+      {
+        "name": "Near Vision",
+        "score": 0.582
+      }
+    ],
+    "tasks": [
+      "Correspond with customers and confer with coworkers to answer inquiries, discuss market fluctuations, or resolve account problems.",
+      "Document security transactions, such as purchases, sales, conversions, redemptions, or payments, using computers, accounting ledgers, or certificate records.",
+      "File, type, or operate standard office machines."
+    ]
+  },
+  "Loan Interviewers and Clerks": {
+    "title": "Loan Interviewers and Clerks",
+    "soc": "43-4131.00",
+    "skills": [
+      {
+        "name": "Active Listening",
+        "score": 0.6592
+      },
+      {
+        "name": "Speaking",
+        "score": 0.64
+      },
+      {
+        "name": "Reading Comprehension",
+        "score": 0.6208
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Customer and Personal Service",
+        "score": 0.767372
+      },
+      {
+        "name": "English Language",
+        "score": 0.7392000000000002
+      },
+      {
+        "name": "Administrative",
+        "score": 0.6870919999999999
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Oral Comprehension",
+        "score": 0.678976
+      },
+      {
+        "name": "Written Comprehension",
+        "score": 0.6592
+      },
+      {
+        "name": "Oral Expression",
+        "score": 0.6592
+      }
+    ],
+    "tasks": [
+      "Verify and examine information and accuracy of loan application and closing documents.",
+      "Assemble and compile documents for loan closings, such as title abstracts, insurance forms, loan forms, and tax receipts.",
+      "Record applications for loan and credit, loan information, and disbursements of funds, using computers."
+    ]
+  }
+}

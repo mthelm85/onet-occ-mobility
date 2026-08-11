@@ -1,0 +1,145 @@
+@import '@fontsource/source-serif-4/400.css';
+@import '@fontsource/source-serif-4/600.css';
+@import '@fontsource/source-serif-4/700.css';
+@import '@fontsource/source-serif-4/400-italic.css';
+
+@import 'tailwindcss';
+@import 'katex/dist/katex.min.css';
+@plugin '@tailwindcss/typography';
+
+@theme {
+    /* Paper & ink */
+    --color-paper: oklch(0.965 0.012 75);
+    --color-ink: oklch(0.15 0.015 260);
+    --color-ink-secondary: oklch(0.32 0.012 260);
+    --color-ink-caption: oklch(0.50 0.008 260);
+    --color-rule: oklch(0.84 0.008 75);
+    --color-accent: oklch(0.45 0.14 25);
+    --color-accent-bg: oklch(0.45 0.14 25 / 0.06);
+
+    /* Typography */
+    --font-serif: 'Source Serif 4', ui-serif, serif;
+    --font-sans: 'Helvetica Neue', 'Arial', ui-sans-serif, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Paper texture ───────────────────────────────────────────────── */
+
+.paper-bg {
+    background-color: var(--color-paper);
+    position: relative;
+}
+
+.paper-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+/* ── Prose overrides ─────────────────────────────────────────────── */
+
+.prose-article {
+    font-family: var(--font-serif);
+
+    --tw-prose-headings: var(--color-ink);
+    --tw-prose-body: var(--color-ink-secondary);
+    --tw-prose-links: var(--color-accent);
+    --tw-prose-bold: var(--color-ink);
+    --tw-prose-quotes: var(--color-ink-secondary);
+    --tw-prose-quote-borders: var(--color-accent);
+    --tw-prose-code: var(--color-ink);
+}
+
+.prose-article :where(a):hover {
+    text-decoration-thickness: 2px;
+}
+
+.prose-article :where(blockquote) {
+    font-style: italic;
+    border-left-width: 2px;
+}
+
+/* ── Article metadata / UI ───────────────────────────────────────── */
+
+.article-meta,
+.article-label,
+.article-nav,
+.article-caption {
+    font-family: var(--font-sans);
+}
+
+/* ── Drop cap ────────────────────────────────────────────────────── */
+
+.drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-serif);
+    font-size: 3.75em;
+    line-height: 0.78;
+    padding-right: 0.08em;
+    padding-top: 0.05em;
+    font-weight: 700;
+    color: var(--color-ink);
+}
+
+/* ── Section rules ───────────────────────────────────────────────── */
+
+.section-rule {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-rule) 15%, var(--color-rule) 85%, transparent);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ── Academic table ──────────────────────────────────────────────── */
+
+.table-academic {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.875rem;
+}
+
+.table-academic thead {
+    border-top: 2px solid var(--color-ink);
+    border-bottom: 1px solid var(--color-ink);
+}
+
+.table-academic thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-caption);
+}
+
+.table-academic tbody tr {
+    border-bottom: 1px solid var(--color-rule);
+}
+
+.table-academic tbody tr:last-child {
+    border-bottom: 2px solid var(--color-ink);
+}
+
+.table-academic tbody td {
+    padding: 0.45rem 0.75rem;
+    color: var(--color-ink-secondary);
+}
+
+.table-academic tbody tr:hover {
+    background-color: var(--color-accent-bg);
+}
