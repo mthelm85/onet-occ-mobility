@@ -25,7 +25,7 @@
 
 	let activeTab = $state<keyof Baselines>('jaccard');
 	let activeBaseline = $derived(baselines[activeTab]);
-	let rows = $derived(dedup(activeBaseline.top).slice(0, 25));
+	let rows = $derived(dedup(activeBaseline.top).slice(0, 10));
 
 	function truncate(s: string, n: number = 46): string {
 		return s.length > n ? s.slice(0, n - 1) + '…' : s;

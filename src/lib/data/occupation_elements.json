@@ -1,53 +1,257 @@
 {
+  "Security Managers": {
+    "title": "Security Managers",
+    "soc": "11-3013.01",
+    "skills": [
+      {
+        "name": "Monitoring",
+        "score": 18.48
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 17.51
+      },
+      {
+        "name": "Reading Comprehension",
+        "score": 16.48
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Public Safety and Security",
+        "score": 29.155000000000005
+      },
+      {
+        "name": "Customer and Personal Service",
+        "score": 22.549999999999997
+      },
+      {
+        "name": "Administration and Management",
+        "score": 21.632
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 21.375
+      },
+      {
+        "name": "Oral Expression",
+        "score": 17.51
+      },
+      {
+        "name": "Written Comprehension",
+        "score": 16.9744
+      }
+    ],
+    "tasks": [
+      "Develop budgets for security operations.",
+      "Identify, investigate, or resolve security breaches.",
+      "Plan, direct, or coordinate security activities to safeguard company employees, guests, or others on company property."
+    ]
+  },
   "Treasurers and Controllers": {
     "title": "Treasurers and Controllers",
     "soc": "11-3031.01",
     "skills": [
       {
         "name": "Critical Thinking",
-        "score": 0.7828
+        "score": 19.57
       },
       {
         "name": "Reading Comprehension",
-        "score": 0.7004
+        "score": 17.51
       },
       {
         "name": "Monitoring",
-        "score": 0.6984
+        "score": 17.46
       }
     ],
     "knowledge": [
       {
         "name": "Economics and Accounting",
-        "score": 1.1039999999999999
+        "score": 27.599999999999998
       },
       {
         "name": "Administration and Management",
-        "score": 0.942128
+        "score": 23.5532
       },
       {
         "name": "English Language",
-        "score": 0.81144
+        "score": 20.286
       }
     ],
     "abilities": [
       {
         "name": "Oral Expression",
-        "score": 0.7807999999999999
+        "score": 19.52
       },
       {
         "name": "Problem Sensitivity",
-        "score": 0.7392
+        "score": 18.48
       },
       {
         "name": "Deductive Reasoning",
-        "score": 0.7392
+        "score": 18.48
       }
     ],
     "tasks": [
       "Evaluate needs for procurement of funds and investment of surpluses and make appropriate recommendations.",
       "Delegate authority for the receipt, disbursement, banking, protection, and custody of funds, securities, and financial instruments.",
       "Develop and maintain relationships with banking, insurance, and external accounting personnel to facilitate financial activities."
+    ]
+  },
+  "Environmental Compliance Inspectors": {
+    "title": "Environmental Compliance Inspectors",
+    "soc": "13-1041.01",
+    "skills": [
+      {
+        "name": "Reading Comprehension",
+        "score": 19.0
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 17.0
+      },
+      {
+        "name": "Speaking",
+        "score": 16.49
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "English Language",
+        "score": 17.64
+      },
+      {
+        "name": "Law and Government",
+        "score": 16.81
+      },
+      {
+        "name": "Computers and Electronics",
+        "score": 14.317500000000003
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 20.1056
+      },
+      {
+        "name": "Oral Expression",
+        "score": 19.52
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 19.0
+      }
+    ],
+    "tasks": [
+      "Determine the nature of code violations and actions to be taken, and issue written notices of violation, participating in enforcement hearings, as necessary.",
+      "Prepare, organize, and maintain inspection records.",
+      "Investigate complaints and suspected violations regarding illegal dumping, pollution, pesticides, product quality, or labeling laws."
+    ]
+  },
+  "Human Resources Specialists": {
+    "title": "Human Resources Specialists",
+    "soc": "13-1071.00",
+    "skills": [
+      {
+        "name": "Speaking",
+        "score": 16.48
+      },
+      {
+        "name": "Reading Comprehension",
+        "score": 16.0
+      },
+      {
+        "name": "Active Listening",
+        "score": 16.0
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Personnel and Human Resources",
+        "score": 26.1954
+      },
+      {
+        "name": "Administrative",
+        "score": 20.7638
+      },
+      {
+        "name": "Administration and Management",
+        "score": 14.9753
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Oral Comprehension",
+        "score": 16.48
+      },
+      {
+        "name": "Written Comprehension",
+        "score": 16.0
+      },
+      {
+        "name": "Oral Expression",
+        "score": 16.0
+      }
+    ],
+    "tasks": [
+      "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+      "Hire employees and process hiring-related paperwork.",
+      "Maintain current knowledge of Equal Employment Opportunity (EEO) and affirmative action guidelines and laws, such as the Americans with Disabilities Act (ADA)."
+    ]
+  },
+  "Management Analysts": {
+    "title": "Management Analysts",
+    "soc": "13-1111.00",
+    "skills": [
+      {
+        "name": "Reading Comprehension",
+        "score": 16.9744
+      },
+      {
+        "name": "Active Listening",
+        "score": 16.9744
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 16.9744
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "English Language",
+        "score": 25.1043
+      },
+      {
+        "name": "Administration and Management",
+        "score": 21.462
+      },
+      {
+        "name": "Customer and Personal Service",
+        "score": 21.16
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Oral Expression",
+        "score": 19.57
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 17.51
+      },
+      {
+        "name": "Written Expression",
+        "score": 17.0
+      }
+    ],
+    "tasks": [
+      "Gather and organize information on problems or procedures.",
+      "Confer with personnel concerned to ensure successful functioning of newly implemented systems or procedures.",
+      "Analyze data gathered and develop solutions or alternative methods of proceeding."
     ]
   },
   "Financial Risk Specialists": {
@@ -68,49 +272,100 @@
     "skills": [
       {
         "name": "Active Listening",
-        "score": 0.64
+        "score": 16.0
       },
       {
         "name": "Speaking",
-        "score": 0.64
+        "score": 16.0
       },
       {
         "name": "Reading Comprehension",
-        "score": 0.6208
+        "score": 15.52
       }
     ],
     "knowledge": [
       {
         "name": "Customer and Personal Service",
-        "score": 1.0528
+        "score": 26.32
       },
       {
         "name": "Economics and Accounting",
-        "score": 0.643848
+        "score": 16.0962
       },
       {
         "name": "Mathematics",
-        "score": 0.61992
+        "score": 15.498000000000001
       }
     ],
     "abilities": [
       {
         "name": "Near Vision",
-        "score": 0.6984
+        "score": 17.46
       },
       {
         "name": "Oral Comprehension",
-        "score": 0.6592
+        "score": 16.48
       },
       {
         "name": "Oral Expression",
-        "score": 0.6592
+        "score": 16.48
       }
     ],
     "tasks": [
       "Meet with applicants to obtain information for loan applications and to answer questions about the process.",
       "Analyze applicants' financial status, credit, and property evaluations to determine feasibility of granting loans.",
       "Approve loans within specified limits, and refer loan applications outside those limits to management for approval."
+    ]
+  },
+  "Fraud Examiners, Investigators and Analysts": {
+    "title": "Fraud Examiners, Investigators and Analysts",
+    "soc": "13-2099.04",
+    "skills": [
+      {
+        "name": "Active Listening",
+        "score": 17.51
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 17.0
+      },
+      {
+        "name": "Writing",
+        "score": 16.9744
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "English Language",
+        "score": 22.1488
+      },
+      {
+        "name": "Economics and Accounting",
+        "score": 20.8464
+      },
+      {
+        "name": "Law and Government",
+        "score": 17.4528
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Written Expression",
+        "score": 18.0625
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 17.51
+      },
+      {
+        "name": "Written Comprehension",
+        "score": 16.48
+      }
+    ],
+    "tasks": [
+      "Gather financial documents related to investigations.",
+      "Interview witnesses or suspects and take statements.",
+      "Prepare written reports of investigation findings."
     ]
   },
   "Data Scientists": {
@@ -131,43 +386,43 @@
     "skills": [
       {
         "name": "Reading Comprehension",
-        "score": 0.7828
+        "score": 19.57
       },
       {
         "name": "Critical Thinking",
-        "score": 0.7828
+        "score": 19.57
       },
       {
         "name": "Writing",
-        "score": 0.7008
+        "score": 17.52
       }
     ],
     "knowledge": [
       {
         "name": "Mathematics",
-        "score": 1.104128
+        "score": 27.6032
       },
       {
         "name": "Economics and Accounting",
-        "score": 0.9812000000000001
+        "score": 24.53
       },
       {
         "name": "English Language",
-        "score": 0.788608
+        "score": 19.7152
       }
     ],
     "abilities": [
       {
         "name": "Written Comprehension",
-        "score": 0.8240000000000001
+        "score": 20.6
       },
       {
         "name": "Written Expression",
-        "score": 0.8
+        "score": 20.0
       },
       {
         "name": "Oral Comprehension",
-        "score": 0.7807999999999999
+        "score": 19.52
       }
     ],
     "tasks": [
@@ -182,43 +437,43 @@
     "skills": [
       {
         "name": "Reading Comprehension",
-        "score": 0.8042239999999999
+        "score": 20.1056
       },
       {
         "name": "Active Listening",
-        "score": 0.7004
+        "score": 17.51
       },
       {
         "name": "Critical Thinking",
-        "score": 0.7004
+        "score": 17.51
       }
     ],
     "knowledge": [
       {
         "name": "Medicine and Dentistry",
-        "score": 1.0351119999999998
+        "score": 25.877799999999997
       },
       {
         "name": "Customer and Personal Service",
-        "score": 0.90464
+        "score": 22.616
       },
       {
         "name": "Biology",
-        "score": 0.9039999999999999
+        "score": 22.599999999999998
       }
     ],
     "abilities": [
       {
         "name": "Problem Sensitivity",
-        "score": 0.8240000000000001
+        "score": 20.6
       },
       {
         "name": "Oral Comprehension",
-        "score": 0.8
+        "score": 20.0
       },
       {
         "name": "Inductive Reasoning",
-        "score": 0.7807999999999999
+        "score": 19.52
       }
     ],
     "tasks": [
@@ -233,43 +488,43 @@
     "skills": [
       {
         "name": "Reading Comprehension",
-        "score": 0.8042239999999999
+        "score": 20.1056
       },
       {
         "name": "Active Learning",
-        "score": 0.7008
+        "score": 17.52
       },
       {
         "name": "Active Listening",
-        "score": 0.7004
+        "score": 17.51
       }
     ],
     "knowledge": [
       {
         "name": "Medicine and Dentistry",
-        "score": 1.114344
+        "score": 27.858600000000003
       },
       {
         "name": "Customer and Personal Service",
-        "score": 1.034496
+        "score": 25.8624
       },
       {
         "name": "Biology",
-        "score": 1.028048
+        "score": 25.701200000000004
       }
     ],
     "abilities": [
       {
         "name": "Problem Sensitivity",
-        "score": 0.8192
+        "score": 20.48
       },
       {
         "name": "Inductive Reasoning",
-        "score": 0.7807999999999999
+        "score": 19.52
       },
       {
         "name": "Oral Comprehension",
-        "score": 0.721824
+        "score": 18.0456
       }
     ],
     "tasks": [
@@ -302,49 +557,253 @@
       "Diagnose bodily disorders and orthopedic conditions, and provide treatments, such as medicines and surgeries, in clinics, hospital wards, or operating rooms."
     ]
   },
+  "First-Line Supervisors of Police and Detectives": {
+    "title": "First-Line Supervisors of Police and Detectives",
+    "soc": "33-1012.00",
+    "skills": [
+      {
+        "name": "Reading Comprehension",
+        "score": 16.0
+      },
+      {
+        "name": "Active Listening",
+        "score": 16.0
+      },
+      {
+        "name": "Speaking",
+        "score": 16.0
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Customer and Personal Service",
+        "score": 27.3598
+      },
+      {
+        "name": "Public Safety and Security",
+        "score": 26.0494
+      },
+      {
+        "name": "Law and Government",
+        "score": 22.567999999999998
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 16.48
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 16.0
+      },
+      {
+        "name": "Written Comprehension",
+        "score": 16.0
+      }
+    ],
+    "tasks": [
+      "Supervise and coordinate the investigation of criminal cases, offering guidance and expertise to investigators, and ensuring that procedures are conducted in accordance with laws and regulations.",
+      "Prepare work schedules and assign duties to subordinates.",
+      "Direct collection, preparation, and handling of evidence and personal property of prisoners."
+    ]
+  },
+  "Fire Inspectors and Investigators": {
+    "title": "Fire Inspectors and Investigators",
+    "soc": "33-2021.00",
+    "skills": [
+      {
+        "name": "Speaking",
+        "score": 13.58
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 13.125
+      },
+      {
+        "name": "Active Listening",
+        "score": 13.1044
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Customer and Personal Service",
+        "score": 25.5088
+      },
+      {
+        "name": "Public Safety and Security",
+        "score": 23.077
+      },
+      {
+        "name": "Education and Training",
+        "score": 19.8303
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Oral Comprehension",
+        "score": 16.48
+      },
+      {
+        "name": "Written Comprehension",
+        "score": 16.0
+      },
+      {
+        "name": "Written Expression",
+        "score": 16.0
+      }
+    ],
+    "tasks": [
+      "Prepare and maintain reports of investigation results, and records of convicted arsonists and arson suspects.",
+      "Testify in court cases involving fires, suspected arson, and false alarms.",
+      "Package collected pieces of evidence in securely closed containers, such as bags, crates, or boxes, to protect them."
+    ]
+  },
+  "Forest Fire Inspectors and Prevention Specialists": {
+    "title": "Forest Fire Inspectors and Prevention Specialists",
+    "soc": "33-2022.00",
+    "skills": [
+      {
+        "name": "Critical Thinking",
+        "score": 15.52
+      },
+      {
+        "name": "Speaking",
+        "score": 12.674999999999999
+      },
+      {
+        "name": "Active Listening",
+        "score": 11.765
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Customer and Personal Service",
+        "score": 19.940399999999997
+      },
+      {
+        "name": "Education and Training",
+        "score": 18.4008
+      },
+      {
+        "name": "Public Safety and Security",
+        "score": 18.154799999999998
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 16.48
+      },
+      {
+        "name": "Oral Expression",
+        "score": 16.0
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 15.52
+      }
+    ],
+    "tasks": [
+      "Relay messages about emergencies, accidents, locations of crew and personnel, and fire hazard conditions.",
+      "Conduct wildland firefighting training.",
+      "Estimate sizes and characteristics of fires, and report findings to base camps by radio or telephone."
+    ]
+  },
+  "Customs and Border Protection Officers": {
+    "title": "Customs and Border Protection Officers",
+    "soc": "33-3051.04",
+    "skills": [
+      {
+        "name": "Active Listening",
+        "score": 16.0
+      },
+      {
+        "name": "Speaking",
+        "score": 16.0
+      },
+      {
+        "name": "Critical Thinking",
+        "score": 15.52
+      }
+    ],
+    "knowledge": [
+      {
+        "name": "Law and Government",
+        "score": 19.936000000000003
+      },
+      {
+        "name": "Public Safety and Security",
+        "score": 19.5696
+      },
+      {
+        "name": "Customer and Personal Service",
+        "score": 17.2074
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Problem Sensitivity",
+        "score": 16.48
+      },
+      {
+        "name": "Near Vision",
+        "score": 16.48
+      },
+      {
+        "name": "Oral Comprehension",
+        "score": 16.0
+      }
+    ],
+    "tasks": [
+      "Examine immigration applications, visas, and passports and interview persons to determine eligibility for admission, residence, and travel in the U.S.",
+      "Detain persons found to be in violation of customs or immigration laws and arrange for legal action, such as deportation.",
+      "Inspect cargo, baggage, and personal articles entering or leaving U.S. for compliance with revenue laws and U.S. customs regulations."
+    ]
+  },
   "Brokerage Clerks": {
     "title": "Brokerage Clerks",
     "soc": "43-4011.00",
     "skills": [
       {
         "name": "Active Listening",
-        "score": 0.6021759999999999
+        "score": 15.0544
       },
       {
         "name": "Reading Comprehension",
-        "score": 0.5625
+        "score": 14.0625
       },
       {
         "name": "Speaking",
-        "score": 0.561824
+        "score": 14.0456
       }
     ],
     "knowledge": [
       {
         "name": "Customer and Personal Service",
-        "score": 0.7044079999999999
+        "score": 17.6102
       },
       {
         "name": "English Language",
-        "score": 0.6920280000000001
+        "score": 17.300700000000003
       },
       {
         "name": "Mathematics",
-        "score": 0.554752
+        "score": 13.8688
       }
     ],
     "abilities": [
       {
         "name": "Oral Comprehension",
-        "score": 0.6208
+        "score": 15.52
       },
       {
         "name": "Oral Expression",
-        "score": 0.6208
+        "score": 15.52
       },
       {
         "name": "Near Vision",
-        "score": 0.582
+        "score": 14.549999999999999
       }
     ],
     "tasks": [
@@ -359,43 +818,43 @@
     "skills": [
       {
         "name": "Active Listening",
-        "score": 0.6592
+        "score": 16.48
       },
       {
         "name": "Speaking",
-        "score": 0.64
+        "score": 16.0
       },
       {
         "name": "Reading Comprehension",
-        "score": 0.6208
+        "score": 15.52
       }
     ],
     "knowledge": [
       {
         "name": "Customer and Personal Service",
-        "score": 0.767372
+        "score": 19.1843
       },
       {
         "name": "English Language",
-        "score": 0.7392000000000002
+        "score": 18.480000000000004
       },
       {
         "name": "Administrative",
-        "score": 0.6870919999999999
+        "score": 17.1773
       }
     ],
     "abilities": [
       {
         "name": "Oral Comprehension",
-        "score": 0.678976
+        "score": 16.9744
       },
       {
         "name": "Written Comprehension",
-        "score": 0.6592
+        "score": 16.48
       },
       {
         "name": "Oral Expression",
-        "score": 0.6592
+        "score": 16.48
       }
     ],
     "tasks": [

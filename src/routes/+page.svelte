@@ -1,29 +1,16 @@
 <script lang="ts">
 	import results from '$lib/data/results.json';
-	import type { Results, TuckerPrediction } from '$lib/types';
+	import type { Results } from '$lib/types';
 	import LineChart from '$lib/components/LineChart.svelte';
-	import OverlapMatrix from '$lib/components/OverlapMatrix.svelte';
-	import BaselineTabs from '$lib/components/BaselineTabs.svelte';
-	import ZeroOverlapGraph from '$lib/components/ZeroOverlapGraph.svelte';
 	import ThreadRule from '$lib/components/ThreadRule.svelte';
+	import OccupationGraph from '$lib/components/OccupationGraph.svelte';
+	import PredictionGraph from '$lib/components/PredictionGraph.svelte';
 	import Math from '$lib/components/Math.svelte';
-	import { slide } from 'svelte/transition';
-
 	const data = results as unknown as Results;
-	const { meta, model_config, training_history, test_metrics, tucker_predictions, baselines, overlap } = data;
+	const { meta, model_config, training_history, test_metrics, tucker_predictions } = data;
 
-	let expandedRow = $state(-1);
-
-	function truncate(s: string, n: number = 46): string {
-		return s.length > n ? s.slice(0, n - 1) + '…' : s;
-	}
-
-	function jaccard0Predictions(): TuckerPrediction[] {
-		return tucker_predictions.filter((p) => p.overlap.jaccard === 0);
-	}
-
-	// Deduplicate mirrored pairs in TuckER predictions
-	function dedupPredictions(preds: TuckerPrediction[]): TuckerPrediction[] {
+	// Deduplicate mirrored pairs (predictions often include both A→B and B→A)
+	function dedupPairs<T extends { source: string; target: string }>(preds: T[]): T[] {
 		const seen = new Set<string>();
 		return preds.filter((p) => {
 			const key = [p.source, p.target].sort().join('|||');
@@ -33,14 +20,28 @@
 		});
 	}
 
-	const top25 = dedupPredictions(tucker_predictions).slice(0, 25);
+	const allDeduped = dedupPairs(tucker_predictions);
+
+	// Curated compelling pairs for the graph visualization
+	const compellingPairKeys = new Set([
+		['Customs and Border Protection Officers', 'First-Line Supervisors of Police and Detectives'],
+		['First-Line Supervisors of Police and Detectives', 'Fraud Examiners, Investigators and Analysts'],
+		['First-Line Supervisors of Police and Detectives', 'Security Managers'],
+		['First-Line Supervisors of Police and Detectives', 'Fire Inspectors and Investigators'],
+		['Human Resources Specialists', 'Management Analysts'],
+		['Forest Fire Inspectors and Prevention Specialists', 'Environmental Compliance Inspectors'],
+	].map(([a, b]) => [a, b].sort().join('|||')));
+
+	const compellingPredictions = allDeduped.filter(p =>
+		compellingPairKeys.has([p.source, p.target].sort().join('|||'))
+	);
 </script>
 
 <svelte:head>
 	<title>Knowledge Graph Embeddings for Occupational Mobility</title>
 	<meta
 		name="description"
-		content="Using TuckER to find career pathways in O*NET that traditional similarity methods miss."
+		content="Exploring O*NET's graph structure with TuckER to find related occupations"
 	/>
 </svelte:head>
 
@@ -52,7 +53,7 @@
 		Knowledge Graph Embeddings for Occupational Mobility
 	</h1>
 	<p class="mt-6 text-xl leading-relaxed text-ink-secondary font-serif italic">
-		Finding career pathways in O*NET that traditional similarity methods miss.
+		Exploring O*NET's graph structure with TuckER to find related occupations
 	</p>
 	<p class="mt-8 font-sans text-xs uppercase tracking-[0.2em] text-ink-caption text-right">
 		<a href="https://matthelm.pro" target="_blank" rel="noopener" class="hover:text-accent">Matt Helm</a>
@@ -67,25 +68,28 @@
 <section class="py-14">
 	<div class="prose prose-article mx-auto max-w-2xl px-6 prose-lg prose-p:leading-[1.8]">
 		<h2 class="font-serif text-2xl">The Problem</h2>
-		<p class="drop-cap">
+		<p>
 			If you've ever looked into changing careers, you've probably run into a version of this
 			question: <em>which occupations match my current skills?</em> One of the richest
 			resources for answering it is
 			<a href="https://www.onetonline.org/" target="_blank" rel="noopener">O*NET</a>, the
-			Occupational Information Network, which describes 1,016 occupations through detailed
-			profiles — skills, knowledge areas, abilities, tasks, and work activities. It
-			underpins many of the career exploration tools used across the country.
+			Occupational Information Network. It describes 1,016 occupations through detailed
+			profiles that include skills, knowledge areas, abilities, tasks, and work activities.
 		</p>
 		<p>
-			The standard approach to finding related occupations is straightforward. You look at
-			shared elements — if two occupations have a lot of the same skills and knowledge areas,
-			they're probably related. And that works, as long as both occupations actually have
-			those annotations filled in.
+			The standard approach to finding related occupations is straightforward: look at
+			shared elements, and if two occupations have a lot of the same skills and knowledge areas,
+			they're probably related. This works, as long as both occupations actually have
+			those elements.
 		</p>
 		<p>
-			But what if some occupations are missing half their profile? And what if there are
-			meaningful relationships hiding in the <em>structure</em> of the data that simple
-			element comparisons can't see? That's what I set out to explore.
+			O*NET publishes its data in
+			<a href="https://www.w3.org/RDF/" target="_blank" rel="noopener">RDF</a> — a graph
+			format — and that opens up a different class of techniques. Instead of comparing
+			occupation profiles element by element, you can treat the entire dataset as a
+			knowledge graph and look for patterns in its <em>structure</em>. That lets you
+			identify related occupations even when they don't share the same skills, knowledge,
+			or abilities — or when those annotations are missing entirely.
 		</p>
 	</div>
 </section>
@@ -100,17 +104,24 @@
 		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
 			<h2 class="font-serif text-2xl">Building the Graph</h2>
 			<p>
-				O*NET already publishes its data as <a href="https://www.w3.org/RDF/" target="_blank" rel="noopener">RDF</a>, so it's naturally suited to knowledge graph
-				work. I extracted a subgraph from O*NET {meta.onet_version} — a network where
+				I extracted a subgraph from O*NET {meta.onet_version} — a network where
 				occupations, skills, knowledge areas, abilities, tasks, and detailed work activities
-				(DWAs) are all nodes, connected by typed edges. An occupation "has skill" Critical
-				Thinking, "requires knowledge" of Mathematics, and so on. O*NET contains a lot more
-				information than what's in this subgraph — work styles, interests, work context,
-				education requirements, wages, and more — but I kept the scope to the elements most
-				directly tied to what a person <em>does</em> and <em>knows</em> in a role. I also
-				filtered each element type to only the most important ones per occupation, based on
-				O*NET's own importance and level ratings, to keep the graph focused on the strongest
-				signals.
+				(DWAs) are all nodes, connected by typed edges. Here's what a single occupation
+				looks like in that graph:
+			</p>
+		</div>
+
+		<OccupationGraph nRelations={meta.n_relations} nEntities={meta.n_entities} />
+
+		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
+			<p>
+				Each occupation connects to its skills, knowledge areas, abilities, tasks, DWAs,
+				job zone, and other related occupations. O*NET
+				has a lot more information than what I've included here (work styles, interests,
+				work context, education, wages, and more), but I kept the scope to the elements
+				most directly tied to what a person <em>does</em> and <em>knows</em> in a role.
+				I also filtered out low-importance elements using O*NET's own importance and
+				level ratings, so the graph focuses on the strongest signals.
 			</p>
 		</div>
 
@@ -136,81 +147,23 @@
 				specializations — occupations without detailed element profiles.
 			</p>
 			<p>
-				Here's where it gets interesting: even among the {meta.n_occupations} occupations
-				that <em>are</em> in the graph, <strong>not all have complete annotations</strong>.
-				Some occupations — Data Scientists, Financial Risk Specialists, Cardiologists, to
-				name a few — have task data but are missing their skill, knowledge, and ability
-				ratings. This turns out to be a real problem for traditional similarity methods,
-				as we'll see.
-			</p>
-		</div>
-	</div>
-</section>
-
-<hr class="section-rule" />
-
-<!-- ═══════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 3: BASELINES                                                  -->
-<!-- ═══════════════════════════════════════════════════════════════════════ -->
-<section class="py-14">
-	<div class="mx-auto max-w-2xl px-6">
-		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
-			<h2 class="font-serif text-2xl">Three Baselines</h2>
-			<p>
-				Before reaching for anything fancy, I wanted to see how far simple methods could
-				go. I tried three approaches, each a bit more sophisticated than the last.
+				One thing to note is that <strong>not all of these occupations have complete
+				annotations</strong>. Some — Data Scientists, Financial Risk Specialists,
+				Cardiologists — have task data but are missing their skill, knowledge, and
+				ability ratings. For fully annotated occupations, finding related career
+				paths is straightforward: O*NET already catalogs related occupations, and
+				you can compute element-based similarity (Jaccard overlap, cosine similarity)
+				to find more. But for occupations with incomplete profiles, those methods
+				are working with a much weaker signal.
 			</p>
 			<p>
-				<strong>Jaccard similarity</strong> is the most straightforward. For each pair of
-				occupations, count the elements they share — skills, knowledge areas, abilities,
-				tasks, DWAs — and divide by the total number of unique elements across both. If
-				occupation A has 30 elements and B has 25, with 15 in common, their Jaccard
-				similarity is <Math tex={'15 / (30 + 25 - 15) = 0.375'} />. This is essentially
-				what a SPARQL query would give you.
-			</p>
-			<p>
-				<strong>Binary cosine similarity</strong> uses the same data but normalizes
-				differently. Each occupation becomes a binary vector over all possible elements — a
-				1 for each element it has, 0 otherwise — and I compute the cosine of the angle
-				between them:
-			</p>
-		</div>
-		<div class="my-4 text-center">
-			<Math tex={'\\cos(\\theta) = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{\\|\\mathbf{a}\\| \\, \\|\\mathbf{b}\\|}'} display />
-		</div>
-		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
-			<p>
-				This rewards occupations that share elements relative to their profile sizes,
-				rather than penalizing larger profiles the way Jaccard does.
-			</p>
-			<p>
-				<strong>Text embedding similarity</strong> takes a completely different tack. I
-				embedded each occupation's title using a language model (<a href="https://huggingface.co/BAAI/bge-m3" target="_blank" rel="noopener">bge-m3</a>) and computed
-				cosine similarity in the resulting vector space. This captures semantic
-				meaning — "Nuclear Technicians" and "Nuclear Engineers" end up close
-				together — but uses no graph structure at all.
-			</p>
-		</div>
-
-		<div class="mt-8">
-			<BaselineTabs {baselines} />
-		</div>
-
-		<div class="prose prose-article mt-8 prose-lg prose-p:leading-[1.8]">
-			<p>
-				The pattern is pretty clear. Jaccard and cosine are comparing sets of shared
-				elements — they don't use the graph structure (the type of relationship, the
-				predicates), just whether two occupations share the same subjects and objects.
-				The text embedding baseline finds occupations with similar <em>names</em>.
-				And all three hit the same wall: they can only compare occupations on dimensions
-				where <em>both</em> have data.
-			</p>
-			<p>
-				So what if we used an approach that actually learns from the graph structure?
-				That's where knowledge graph embedding models come in. I used one called
+				Since O*NET's data is already structured as a knowledge graph with typed
+				relationships, there's another angle worth exploring: models that learn from
+				the <em>pattern</em> of connections, not just which elements are shared. I
+				used a model called
 				<a href="https://arxiv.org/abs/1901.09590" target="_blank" rel="noopener">TuckER</a>,
 				which learns a low-dimensional representation of every entity and relationship
-				in the graph, then uses those representations to predict missing links.
+				in the graph and then uses those representations to predict missing links.
 			</p>
 		</div>
 	</div>
@@ -226,102 +179,39 @@
 		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
 			<h2 class="font-serif text-2xl">What TuckER Finds</h2>
 			<p>
-				The key idea is that two occupations can be related not because they share the
+				The idea is that two occupations can be related not because they share the
 				same skills, but because they play similar <em>structural roles</em> in the
-				graph. TuckER decomposes the pattern of connections into a set of latent factors,
+				graph. TuckER decomposes the pattern of connections into a set of latent factors
 				and uses those to score how likely any unobserved link is.
 			</p>
 			<p>
-				I trained a TuckER model on the O*NET knowledge graph and ranked all unobserved
-				occupation pairs by predicted score. I found that there was no overlap at all
-				between the model's top predictions and the three baseline methods:
+				I trained the model on the O*NET knowledge graph and ranked all unobserved
+				occupation pairs by predicted score, filtering out every pair that O*NET already
+				lists as related. Here are some of the predictions that stood out — click any
+				node to see its O*NET profile:
 			</p>
 		</div>
 
-		<!-- Overlap matrix -->
-		<div class="mt-10">
-			<h3 class="mb-4 text-center font-sans text-sm font-semibold uppercase tracking-wider text-ink-caption">
-				Prediction Overlap
-			</h3>
-			<OverlapMatrix {overlap} />
-		</div>
+		<PredictionGraph predictions={compellingPredictions} />
 
-		<div class="prose prose-article mt-8 prose-lg prose-p:leading-[1.8]">
+		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
 			<p>
-				The Jaccard and cosine baselines overlap heavily with each other
-				({overlap.jaccard_vs_binary_cosine} of 50 shared) — which makes sense, since
-				they're looking at the same underlying data. But TuckER doesn't share a single top
-				prediction with any of them. It's finding relationships in a completely different
-				part of the space.
+				The strongest cluster is in law enforcement and public safety. Police
+				Supervisors get paired with Customs Officers, Fraud Examiners, Security
+				Managers, and Fire Investigators — all roles that share investigative and
+				supervisory patterns, even though O*NET doesn't list them as related.
+				Management Analysts linked to HR Specialists and Forest Fire Inspectors
+				linked to Environmental Compliance Inspectors are also good fits.
+			</p>
+			<p>
+				While this revealed many interesting predictions, there were also many that 
+				were clearly erroneous. Railroad Conductors and Commercial
+				Pilots both show up in the top 25 as a predicted pair — they're both in
+				transportation, but the actual career paths, training, and certifications
+				are completely different. That's a case where structural similarity in the
+				graph doesn't translate to a practical career move.
 			</p>
 		</div>
-	</div>
-
-	<!-- Predictions table — wider for readability -->
-	<div class="mx-auto mt-10 max-w-3xl px-6">
-		<h3 class="mb-1 font-serif text-xl font-semibold text-ink">
-			Top 25 TuckER Predictions
-		</h3>
-		<p class="mb-5 font-sans text-sm text-ink-caption">
-			None of these pairs appear in any baseline's top-50 list. The Jaccard column shows
-			element-level similarity between each pair — <span class="text-accent">highlighted
-			rows</span> have zero shared elements. Click a row for the breakdown.
-		</p>
-		<table class="table-academic">
-			<thead>
-				<tr>
-					<th class="w-10 text-right">#</th>
-					<th>Source</th>
-					<th>Target</th>
-					<th class="text-right">Jaccard</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each top25 as pred, i}
-					<tr
-						class="cursor-pointer {pred.overlap.jaccard === 0 ? '!bg-accent-bg' : ''}"
-						onclick={() => (expandedRow = expandedRow === i ? -1 : i)}
-					>
-						<td class="text-right text-ink-caption tabular-nums">{i + 1}</td>
-						<td>{truncate(pred.source)}</td>
-						<td>{truncate(pred.target)}</td>
-						<td class="text-right tabular-nums font-mono text-xs {pred.overlap.jaccard === 0 ? 'font-semibold text-accent' : 'text-ink-caption'}">
-							{pred.overlap.jaccard.toFixed(3)}
-						</td>
-					</tr>
-					{#if expandedRow === i}
-						<tr class="!bg-transparent hover:!bg-transparent">
-							<td colspan="4" class="!p-0 !border-b-0">
-								<div transition:slide={{ duration: 300 }} class="py-4">
-									<div class="flex flex-wrap gap-6 justify-center">
-										{#each [
-											{ label: 'Skills', val: pred.overlap.shared_skills },
-											{ label: 'Knowledge', val: pred.overlap.shared_knowledge },
-											{ label: 'Abilities', val: pred.overlap.shared_abilities },
-											{ label: 'Tasks', val: pred.overlap.shared_tasks },
-											{ label: 'DWAs', val: pred.overlap.shared_dwas },
-											{ label: 'Same Job Zone', val: pred.overlap.same_jobzone ? '✓' : '—' }
-										] as item}
-											<div class="text-center">
-												<div class="text-xl font-serif font-bold tabular-nums {item.val === 0 ? 'text-accent' : ''}">
-													{item.val}
-												</div>
-												<div class="font-sans text-xs uppercase tracking-wide text-ink-caption">{item.label}</div>
-											</div>
-										{/each}
-									</div>
-									{#if pred.overlap.jaccard === 0}
-										<p class="mt-3 text-center font-sans text-xs text-ink-caption italic">
-											Zero shared elements — TuckER infers this link from task relationships and graph structure alone.
-										</p>
-									{/if}
-								</div>
-							</td>
-						</tr>
-					{/if}
-				{/each}
-			</tbody>
-		</table>
 	</div>
 </section>
 
@@ -335,60 +225,41 @@
 		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
 			<h2 class="font-serif text-2xl">Why This Matters</h2>
 			<p>
-				The zero-overlap result is interesting on its own, but the really useful part is
-				<em>why</em> the predictions differ. Look at TuckER's most confident predictions
-				that have a Jaccard similarity of exactly zero:
-			</p>
-		</div>
-
-		<!-- Jaccard=0 predictions: interactive graph -->
-		<ZeroOverlapGraph predictions={jaccard0Predictions()} />
-
-		<div class="prose prose-article prose-lg prose-p:leading-[1.8]">
-			<p>
-				These aren't zero because the occupations are unrelated — they're zero because
-				one or both occupations are missing their skill, knowledge, and ability annotations
-				entirely. The only element data they have is tasks. Jaccard, cosine, text
-				embeddings — none of them can do anything useful here. TuckER finds these
-				connections by reasoning over task relationships and graph structure alone.
+				O*NET is a living database. Occupations get added and revised regularly,
+				and not all of them have complete element profiles yet. For those
+				occupations, element-based methods are working with limited data —
+				task overlap alone is a much weaker signal than a full profile comparison.
+				Knowledge graph embeddings can extract more from those limited connections
+				by reasoning over the structure of the graph rather than just counting
+				shared elements.
 			</p>
 			<p>
-				This matters for workforce development because O*NET is a living database.
-				Occupations get added and revised regularly, and not all of them have complete
-				element profiles — some are missing skill, knowledge, or ability ratings entirely.
-				For those occupations, the standard career exploration tools are effectively blind.
-				Knowledge graph embeddings can help fill that gap — not by replacing
-				element-based methods, but by finding what they can't see.
+				Even for occupations with complete profiles, TuckER surfaces connections
+				that element overlap doesn't. A dispatcher and an air traffic controller
+				don't top each other's similarity scores, but both coordinate traffic
+				in high-stakes environments. A fraud examiner and a police supervisor
+				share investigative reasoning patterns that don't reduce to a skills
+				checklist. These are the kinds of connections that emerge from structural
+				patterns in the graph.
 			</p>
 			<p>
-				Of course, structural similarity in a graph doesn't always translate to a
-				practical career path. Veterinarians and Cardiologists play similar roles in the
-				graph — both diagnose, treat, and perform procedures — but the training
-				pipelines are very different. These predictions are better understood as signals
-				worth exploring, not direct recommendations.
+				As the Railroad Conductors example shows, structural similarity doesn't
+				always translate to a practical career path. These predictions are
+				hypotheses, not recommendations. The natural next step would be validation
+				against real-world data — the Bureau of Labor Statistics publishes
+				<a href="https://www.bls.gov/nls/" target="_blank" rel="noopener">occupational transition data</a>
+				that could tell us whether these predicted paths correspond to career moves
+				people actually make.
 			</p>
 			<p>
-				It's also worth noting that TuckER is just one approach. Other knowledge graph
-				embedding models — <a href="https://arxiv.org/abs/1902.10197" target="_blank" rel="noopener">RotatE</a>,
+				TuckER is also just one approach. Other knowledge graph embedding
+				models — <a href="https://arxiv.org/abs/1902.10197" target="_blank" rel="noopener">RotatE</a>,
 				<a href="https://arxiv.org/abs/1412.6575" target="_blank" rel="noopener">TransR</a>,
 				<a href="https://arxiv.org/abs/1707.01476" target="_blank" rel="noopener">ConvE</a> — model
 				relational patterns differently and might surface different connections.
 				Graph neural network methods like
 				<a href="https://arxiv.org/abs/1703.06103" target="_blank" rel="noopener">R-GCN</a>
 				could go further by incorporating node features and multi-hop reasoning.
-				The point here isn't that TuckER is the answer — it's that the structural
-				information in O*NET's knowledge graph is worth using, and the standard
-				tools aren't using it yet.
-			</p>
-			<p>
-				What I'd do next is validate these predictions against real-world data — the
-				Bureau of Labor Statistics publishes
-				<a href="https://www.bls.gov/nls/" target="_blank" rel="noopener">occupational transition data</a>
-				that could tell us whether TuckER's predicted mobility paths actually correspond
-				to career moves people make. And since I only tried one embedding method here,
-				the natural follow-up is to benchmark those other approaches I mentioned — RotatE,
-				ConvE, R-GCN — on the same graph and see which ones surface the most useful
-				predictions.
 			</p>
 		</div>
 	</div>
@@ -405,9 +276,9 @@
 			<h2 class="font-serif text-2xl">Technical Details</h2>
 			<h3 class="font-serif text-xl">Model Architecture</h3>
 			<p>
-				TuckER uses Tucker decomposition to model knowledge graph relationships. For a
-				given subject entity <Math tex={'s'} /> and relation <Math tex={'r'} />, it
-				scores all possible object entities:
+				TuckER uses Tucker decomposition to model relationships in a knowledge graph.
+				For a given subject entity <Math tex={'s'} /> and relation <Math tex={'r'} />,
+				it scores all possible object entities:
 			</p>
 		</div>
 
