@@ -151,9 +151,9 @@
 			</p>
 			<p>
 				For finding related career paths, one can simply compare element profiles
-				directly. O*NET already catalogs related occupations, and you can compute similarity scores
-				(e.g., Jaccard or cosine similarity) over shared skills, knowledge, and abilities to find
-				even more. That works well, but it can only find occupations that look alike on paper. Two
+				directly. You may have noticed in the visualization above that O*NET already catalogs related occupations, 
+				which they determine largely by doing such a comparison (although, it should be noted that they also rely on judgment from human experts). That works well,
+				 but it can only find occupations that look alike on paper or that consulting experts can identify. Two
 				roles might be structurally related — playing similar roles in the broader occupational
 				landscape — without sharing many of the same elements.
 			</p>
